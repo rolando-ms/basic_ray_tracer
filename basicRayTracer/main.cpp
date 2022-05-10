@@ -3,13 +3,17 @@
 int main()
 {
 	// Image info
-    const int image_width{64};
-    const int image_height{64};
+    const int image_width{256};
+    const int image_height{256};
     
     // Rendering image
     std::cout << "P3\n" << image_width << ' ' << image_height << "\n255\n";
     
+    // Rows written top to bottom
     for(int j{image_height-1}; j >= 0; --j){
+        std::cerr << "\rRemaining rows: " << j << ' ' << std::flush;
+        
+        // Columns written left to right
         for(int i{0}; i < image_width; ++i){
             auto r{double(i) / (image_width-1)};
             auto g{double(j) / (image_height-1)};
@@ -22,4 +26,5 @@ int main()
             std::cout << ir << ' ' << ig << ' ' << ib << '\n';
         }
     }
+    std::cerr << "\nFinished.\n";
 }
