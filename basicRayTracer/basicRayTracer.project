@@ -93,6 +93,9 @@
     </Configuration>
   </Settings>
   <VirtualDirectory Name="src">
+    <File Name="ray.h"/>
+    <File Name="color.h"/>
+    <File Name="vec3.h"/>
     <File Name="main.cpp"/>
   </VirtualDirectory>
 </CodeLite_Project>
