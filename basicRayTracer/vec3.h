@@ -41,6 +41,10 @@ class vec3
         }
         
         double length() const {
+            return sqrt(length_squared());
+        }
+        
+        double length_squared() const{
             return e[0]*e[0] + e[1]*e[1] + e[2]*e[2];
         }
     
