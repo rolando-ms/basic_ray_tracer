@@ -7,23 +7,25 @@
 // Solving b*bt^2 + 2b*(A-C)t + (A-C)*(A-C)-r^2 = 0 with discriminant(from gral soln)
 double hit_sphere(const point3 &center, double radius, const ray &r){
     vec3 oc{r.origin() - center};
-    auto a{dot(r.direction(), r.direction())};
-    auto b{2.0 * dot(oc, r.direction())};
-    auto c{dot(oc, oc) - radius * radius};
-    auto discriminant{b*b - 4*a*c};
+    auto a{r.direction().length_squared()};
+    auto half_b{dot(oc, r.direction())};
+    auto c{oc.length_squared() - radius * radius};
+    auto discriminant{half_b*half_b - a*c};
     if(discriminant < 0){
         return -1.0;
     } else{
-        return (-b - sqrt(discriminant)) / (2.0*a);
+        return (-half_b - sqrt(discriminant)) / (a);
     }
 }
 
 color ray_color(const ray &r){
     // If hit sphere, then color is red
     auto t = hit_sphere(point3(0,0,-1), 0.5, r);
+    
+    // Using normals to hit point to color the sphere
     if(t > 0.0){
-        vec3 N{unit_vector(r.at(t) - vec3(0,0,-1))};
-        return 0.5 * color(N.x()+1, N.y()+1, N.z()+1);
+        vec3 N{unit_vector(r.at(t) - vec3(0,0,-1))}; // N = P-C ; hitpoint - sphere center
+        return 0.5 * color(N.x()+1, N.y()+1, N.z()+1); // Normalizing to [0,1]
     }
     
     vec3 unit_direction{unit_vector(r.direction())};
