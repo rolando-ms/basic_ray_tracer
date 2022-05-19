@@ -93,6 +93,10 @@
     </Configuration>
   </Settings>
   <VirtualDirectory Name="src">
+    <File Name="rtweekend.h"/>
+    <File Name="hittable_list.h"/>
+    <File Name="sphere.h"/>
+    <File Name="hittable.h"/>
     <File Name="ray.h"/>
     <File Name="color.h"/>
     <File Name="vec3.h"/>
