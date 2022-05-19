@@ -93,6 +93,7 @@
     </Configuration>
   </Settings>
   <VirtualDirectory Name="src">
+    <File Name="camera.h"/>
     <File Name="rtweekend.h"/>
     <File Name="hittable_list.h"/>
     <File Name="sphere.h"/>
